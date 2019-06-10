@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qingshuo.questionservice.dao.QuCountMapper" >
+
+    <resultMap id="BaseResultMap" type="com.qingshuo.questionservice.entity.QuCount" >
+        <id column="qc_id" property="qcId" jdbcType="BIGINT" />
+        <result column="qu_attention" property="quAttention" jdbcType="INTEGER" />
+        <result column="qu_answer" property="quAnswer" jdbcType="INTEGER" />
+        <result column="qu_praise" property="quPraise" jdbcType="INTEGER" />
+        <result column="qu_share" property="quShare" jdbcType="INTEGER" />
+        <result column="create_pin" property="createPin" jdbcType="BIGINT" />
+        <result column="create_time" property="createTime" jdbcType="DATE" />
+        <result column="yn" property="yn" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        qc_id, qu_attention, qu_answer, qu_praise, qu_share, create_pin, create_time, yn
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from qu_count
+        where qc_id = #{qcId,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from qu_count
+        where qc_id = #{qcId,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="com.qingshuo.questionservice.entity.QuCount" >
+        insert into qu_count (qc_id, qu_attention, qu_answer, 
+            qu_praise, qu_share, create_pin, 
+            create_time, yn)
+        values (#{qcId,jdbcType=BIGINT}, #{quAttention,jdbcType=INTEGER}, #{quAnswer,jdbcType=INTEGER}, 
+            #{quPraise,jdbcType=INTEGER}, #{quShare,jdbcType=INTEGER}, #{createPin,jdbcType=BIGINT}, 
+            #{createTime,jdbcType=DATE}, #{yn,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.qingshuo.questionservice.entity.QuCount" >
+        insert into qu_count
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="qcId != null" >
+                qc_id,
+            </if>
+            <if test="quAttention != null" >
+                qu_attention,
+            </if>
+            <if test="quAnswer != null" >
+                qu_answer,
+            </if>
+            <if test="quPraise != null" >
+                qu_praise,
+            </if>
+            <if test="quShare != null" >
+                qu_share,
+            </if>
+            <if test="createPin != null" >
+                create_pin,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="yn != null" >
+                yn,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="qcId != null" >
+                #{qcId,jdbcType=BIGINT},
+            </if>
+            <if test="quAttention != null" >
+                #{quAttention,jdbcType=INTEGER},
+            </if>
+            <if test="quAnswer != null" >
+                #{quAnswer,jdbcType=INTEGER},
+            </if>
+            <if test="quPraise != null" >
+                #{quPraise,jdbcType=INTEGER},
+            </if>
+            <if test="quShare != null" >
+                #{quShare,jdbcType=INTEGER},
+            </if>
+            <if test="createPin != null" >
+                #{createPin,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=DATE},
+            </if>
+            <if test="yn != null" >
+                #{yn,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.qingshuo.questionservice.entity.QuCount" >
+        update qu_count
+        <set >
+            <if test="quAttention != null" >
+                qu_attention = #{quAttention,jdbcType=INTEGER},
+            </if>
+            <if test="quAnswer != null" >
+                qu_answer = #{quAnswer,jdbcType=INTEGER},
+            </if>
+            <if test="quPraise != null" >
+                qu_praise = #{quPraise,jdbcType=INTEGER},
+            </if>
+            <if test="quShare != null" >
+                qu_share = #{quShare,jdbcType=INTEGER},
+            </if>
+            <if test="createPin != null" >
+                create_pin = #{createPin,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+            <if test="yn != null" >
+                yn = #{yn,jdbcType=INTEGER},
+            </if>
+        </set>
+        where qc_id = #{qcId,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.qingshuo.questionservice.entity.QuCount" >
+        update qu_count
+        set qu_attention = #{quAttention,jdbcType=INTEGER},
+            qu_answer = #{quAnswer,jdbcType=INTEGER},
+            qu_praise = #{quPraise,jdbcType=INTEGER},
+            qu_share = #{quShare,jdbcType=INTEGER},
+            create_pin = #{createPin,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=DATE},
+            yn = #{yn,jdbcType=INTEGER}
+        where qc_id = #{qcId,jdbcType=BIGINT}
+    </update>
+</mapper>

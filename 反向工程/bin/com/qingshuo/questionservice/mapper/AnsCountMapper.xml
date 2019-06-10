@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qingshuo.questionservice.dao.AnsCountMapper" >
+
+    <resultMap id="BaseResultMap" type="com.qingshuo.questionservice.entity.AnsCount" >
+        <id column="ans_id" property="ansId" jdbcType="BIGINT" />
+        <result column="ans_praise" property="ansPraise" jdbcType="INTEGER" />
+        <result column="ans_comment" property="ansComment" jdbcType="INTEGER" />
+        <result column="ans_share" property="ansShare" jdbcType="INTEGER" />
+        <result column="ans_collect" property="ansCollect" jdbcType="INTEGER" />
+        <result column="create_pin" property="createPin" jdbcType="BIGINT" />
+        <result column="create_time" property="createTime" jdbcType="DATE" />
+        <result column="yn" property="yn" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        ans_id, ans_praise, ans_comment, ans_share, ans_collect, create_pin, create_time, 
+        yn
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from ans_count
+        where ans_id = #{ansId,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from ans_count
+        where ans_id = #{ansId,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="com.qingshuo.questionservice.entity.AnsCount" >
+        insert into ans_count (ans_id, ans_praise, ans_comment, 
+            ans_share, ans_collect, create_pin, 
+            create_time, yn)
+        values (#{ansId,jdbcType=BIGINT}, #{ansPraise,jdbcType=INTEGER}, #{ansComment,jdbcType=INTEGER}, 
+            #{ansShare,jdbcType=INTEGER}, #{ansCollect,jdbcType=INTEGER}, #{createPin,jdbcType=BIGINT}, 
+            #{createTime,jdbcType=DATE}, #{yn,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.qingshuo.questionservice.entity.AnsCount" >
+        insert into ans_count
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ansId != null" >
+                ans_id,
+            </if>
+            <if test="ansPraise != null" >
+                ans_praise,
+            </if>
+            <if test="ansComment != null" >
+                ans_comment,
+            </if>
+            <if test="ansShare != null" >
+                ans_share,
+            </if>
+            <if test="ansCollect != null" >
+                ans_collect,
+            </if>
+            <if test="createPin != null" >
+                create_pin,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="yn != null" >
+                yn,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ansId != null" >
+                #{ansId,jdbcType=BIGINT},
+            </if>
+            <if test="ansPraise != null" >
+                #{ansPraise,jdbcType=INTEGER},
+            </if>
+            <if test="ansComment != null" >
+                #{ansComment,jdbcType=INTEGER},
+            </if>
+            <if test="ansShare != null" >
+                #{ansShare,jdbcType=INTEGER},
+            </if>
+            <if test="ansCollect != null" >
+                #{ansCollect,jdbcType=INTEGER},
+            </if>
+            <if test="createPin != null" >
+                #{createPin,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=DATE},
+            </if>
+            <if test="yn != null" >
+                #{yn,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.qingshuo.questionservice.entity.AnsCount" >
+        update ans_count
+        <set >
+            <if test="ansPraise != null" >
+                ans_praise = #{ansPraise,jdbcType=INTEGER},
+            </if>
+            <if test="ansComment != null" >
+                ans_comment = #{ansComment,jdbcType=INTEGER},
+            </if>
+            <if test="ansShare != null" >
+                ans_share = #{ansShare,jdbcType=INTEGER},
+            </if>
+            <if test="ansCollect != null" >
+                ans_collect = #{ansCollect,jdbcType=INTEGER},
+            </if>
+            <if test="createPin != null" >
+                create_pin = #{createPin,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+            <if test="yn != null" >
+                yn = #{yn,jdbcType=INTEGER},
+            </if>
+        </set>
+        where ans_id = #{ansId,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.qingshuo.questionservice.entity.AnsCount" >
+        update ans_count
+        set ans_praise = #{ansPraise,jdbcType=INTEGER},
+            ans_comment = #{ansComment,jdbcType=INTEGER},
+            ans_share = #{ansShare,jdbcType=INTEGER},
+            ans_collect = #{ansCollect,jdbcType=INTEGER},
+            create_pin = #{createPin,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=DATE},
+            yn = #{yn,jdbcType=INTEGER}
+        where ans_id = #{ansId,jdbcType=BIGINT}
+    </update>
+</mapper>
